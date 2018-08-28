@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AHORCADO</title>
+</head>
+<body>
+    <h1>Juego del Ahorcado</h1>
+    <p>Presiona empezar para el inicio del juego</p>
+    <p><button onclick="Inicio()">EMPEZAR</button> <button onclick="reloaGame()">RECARGAR</button> </p>
+
+    <table width="100%">
+            <tr>
+            <td style="width:200px; height: 500px; background-color:rgb(197, 197, 186);">
+                    <p id="cuadro_texto">
+                        <!--
+                        <input type="text" id="entrada"/>  
+                        <input type="button" value="Enviar" id="boton"/>
+                        -->
+                    </p>
+            </td>
+            <td style="width:250px; height: 500px; background-color:rgb(183, 183, 247);">
+                <p>Palabra que adivinas </p>
+                <p id="palabra">Numero de Intentos: </p>
+                
+                <p id="intentos"></p>
+            </td>
+            <td style="width:350px; height: 500px; background-color:rgb(161, 226, 170);">
+                    <canvas width="300" height="300" id="dibujito">
+                        </canvas>
+                        <p>Evolucion de tus intentos</p>
+                        <script src="dibujo.js"></script>
+                        
+            </td>
+            </tr>
+            </table>
+</body>
+</html>

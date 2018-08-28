@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PAGINA DE PRUEBA CON NODEJS</title>
+    <style type="text/css">
+    
+    </style>
+</head>
+<body>
+    <h1 align="center">Juego del Ahorcado</h1>
+    <p>pagina de prueba para hacer el ahorcado</p>
+    <button onclick="myFunction()">Jugar</button>
+    <p id="jugar"></p>   
+    <div id="data">
+        <p>ingrese opcion de letra: </p>
+        <input id="opcion" type="text"> <button onclick="enviar()">Enviar</button>
+      </div>
+    
+
+            <div id="texto">
+            <h1>Letras encontrada</h1>
+            <p id="letras"></p>
+            </div>
+
+            <div>
+                <h1>Dibujo de ahorcado</h1>
+                <p id="draw"></p>
+            </div>
+
+   
+    
+    <script type="text/javascript">
+            var word= "palabra";
+            var palabras = Array("iglesia", "perros", "paisaje", "apartamento", "ballena", "nene", "fiesta", "obstaculo");
+            var array_letter= [];
+            var len_word;
+            var i;
+            var text;
+            var random_word = Math.round(Math.random()*palabras.length);
+            var entrada;
+            //alert("Número aleatorio entre 0 y  "+ palabras.length  +" :  "+ random_word);
+            word = palabras[random_word]; // palabra a adivinar
+            var len_word = word.length    // longitud de palabra a adivinar
+            var letters = new Array(len_word); // array con numero de casillas de palabra a adivinar
+            //document.getElementById("tam").innerHTML = word + "\n";
+            
+            for (i = 0; i < len_word; i++) {
+                //text += cars[i] + "<br>";
+                letters[i]= "__ "; 
+            }
+            letters = letters + "<br>"
+            document.getElementById("letras").innerHTML = letters;
+
+            function enviar(){
+                entrada= document.getElementById('opcion').value;
+                console.log(entrada);
+                var flag = 0;
+                var ctd=0;
+                var erro=0;
+
+                for(i=0;i<7;i++){
+                    //entrada = prompt("Escriba una letra que cree hace parte de la palabra: ");
+                    //entrada= enviar();
+                    console.log("dentro de myFunc: " +entrada);
+
+                    for (i = 0; i < len_word; i++) {
+                        //document.write("Ingreso   : "+ entrada);
+                        //console.log("En el for: " + word[i]);
+                        if(entrada == word[i]){
+                            console.log("Coincidencia: " + entrada);
+                            letters[i]= entrada;
+                            //document.getElementById("letras").innerHTML = letters;
+                            console.log("llenado: " +  letters);
+                            ctd++;        
+                        }
+                    }
+                    if(ctd !=0){
+                        erro+=1;
+                        document.getElementById("draw").innerHTML = "fallo " + erro;        
+                    }    
+                        
+                }
+                return entrada;
+            }
+
+            function myFunction() {
+                document.getElementById("jugar").innerHTML = "Puedes empezar el juego ingresando letras en la siguiente caja de texto";  // iniciar jugar
+            }   
+
+        //document.getElementById("imprime").innerHTML = text;
+
+        //document.write("coincidencia!\n"+ entrada);
+        //document.getElementById("texto").innerHTML = entrada;  // para poner en un id especifico
+        
+    </script>
+</body>
+</html>
