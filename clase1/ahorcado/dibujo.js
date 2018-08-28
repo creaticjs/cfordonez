@@ -25,7 +25,7 @@ var letters;
 
 // ejecuta la generacion de una palabra
 letters = palabra();
-document.getElementById("palabra").innerHTML = letters; // imprime los campos en id= palabra
+document.getElementById("palabra").innerHTML = letters.join(''); // imprime los campos en id= palabra
 //----------------------     FIN PALABRAS   ---------------------//
 
 function Inicio() {
@@ -77,7 +77,7 @@ function dibujo_click(){
         for (j = 0; j < len_word; j++) {
             if(letter == word[j]){
                 letters[j] = letter;
-                document.getElementById("palabra").innerHTML = letters;
+                document.getElementById("palabra").innerHTML = letters.join('');
                 ctd++;        
             }
         }
