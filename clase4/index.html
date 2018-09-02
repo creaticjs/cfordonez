@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Futbol Colombiano Sept 1/ 2018</title>
+</head>
+<body>
+        <div class="jumbotron text-center">
+                <h2 id="titulo" style="text-align: center">FIFA COLOMBIANA</h2>
+        </div>
+    
+        <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="row">                                           
+                            <input class="btn btn-primary" id="botonA" type="button" value="Primera A">
+                            <input class="btn btn-primary" id="botonB" type="button" value="Torneo B">
+                            <h3 id="title_select"></h3>
+                            <select name="Seleccion" id="equipos" style="display: none;" class="form-control">
+                                <!--
+                                <option value="nacional">Nacional</option>
+                                <option value="america">America</option>
+                                <option value="millonarios">Millonarios</option>
+                                <option value="santafe">Santa Fe</option>
+                                <option value="tolima">Tolima</option>
+                                <option value="medellin">Medellin</option>
+                                <option value="pasto">Pasto</option>
+                                <option value="cali">Cali</option>
+                                <option value="junior">Junior</option>
+                                <option value="equidad">Equidad</option>
+                                -->
+                            </select>                            
+                        </div>
+                        <div class="row" style="margin-top: 10">
+                                <p id="description"></p>
+                        </div>
+                    </div>
+
+                  <div class="col-sm-4">
+                        <h3>Ficha tecnica del Equipo</h3>
+                        <img id="escudo" src="" width="300" height="300">
+                        <h4 id="nombre" style="text-align:left"></h4>
+                        <p id="team"></p>
+                        <p id="stars"></p>
+                        <p id="coach"></p>
+                        <p id="players"></p>
+                        
+                  </div>
+                  <div class="col-sm-4">
+                        <select name="select_tabla" id="tabla_sort" style="display: none;" class="form-control">
+                                <option value="">Ordenar Tabla</option>
+                                <option value="ascendente">Ordenar Ascendente</option>
+                                <option value="millonarios">ordenar Descendente</option>
+                        </select>                                                     
+                    <h2 style="text-align:center">Tabla de Posiciones</h2>
+                    <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col" style="width:40px">Club</th>
+                                <th scope="col">PJ</th>
+                                <th scope="col">G</th>
+                                <th scope="col">E</th>
+                                <th scope="col" onclick="despliegue(3)"><u>P</u></th>
+                                <th scope="col" onclick="despliegue(4)"><u>GF</u></th>
+                                <th scope="col" onclick="despliegue(5)"><u>GC</u></th>
+                                <th scope="col" onclick="despliegue(6)"><u>DG</u></th>
+                                <th scope="col" onclick="despliegue(7)"><u>Pts</u></th>
+                              </tr>
+                            </thead>
+                            <tbody id="bodytable"></tbody>
+                          </table>
+
+                  </div>
+                </div>  <!--End row completo del Document-->
+        </div>
+              
+    <script src="eventos.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
