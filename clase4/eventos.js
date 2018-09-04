@@ -179,28 +179,20 @@ var dataEquipos = [
 
 ];
 
-
 var boton_a = document.getElementById("botonA");
 var boton_b = document.getElementById("botonB");
 
 boton_a.addEventListener("click",mostrar_selectA);
 boton_b.addEventListener("click",mostrar_selectB);
 
-var selEquipos =  document.getElementById("equipos")   // el select de equipos
+var selEquipos =  document.getElementById("equipos");   // el select de equipos
+var table_sort =  document.getElementById("tabla_sort");
 
 selEquipos.onchange = function() { // onchange detecta cambios // Si lo hay dispare una funcion  ciega
-    //console.log("EQUIPO: " + this.value);    // para no repetir el  selEquipos se emplea   "this"
     var nom = this.options[this.selectedIndex].text;
-    //console.log(this.selectedIndex)
-    // acceder al nombre del option no al value
-    //console.log(this.options[this.selectedIndex]);   // captura y entrega el option del  indice selecccionado
-    
-    //console.log(this.options[this.selectedIndex].text);  // para esa opcion accedo al texto    que se mostro en el selector
 
     document.getElementById("nombre").innerHTML="<strong>Equipo seleccionado: " + nom;
-    //document.getElementById("escudo").setAttribute("src",dirImagen[this.selectedIndex]);
     document.getElementById("escudo").setAttribute("src",Equipos_array[this.selectedIndex].urlimage);
-    //document.getElementById("escudo").setAttribute("width",500);
     document.getElementById("team").innerHTML = "<strong>Nombre del Equipo: </strong>"+Equipos_array[this.selectedIndex].nombre;
     document.getElementById("stars").innerHTML ="<strong>Numero de estrellas: </strong>"+Equipos_array[this.selectedIndex].estrellas;
     document.getElementById("coach").innerHTML ="<strong>Director tecnico: </strong>"+Equipos_array[this.selectedIndex].dt;
@@ -213,6 +205,23 @@ selEquipos.onchange = function() { // onchange detecta cambios // Si lo hay disp
     document.getElementById("players").innerHTML ="<strong>Jugadores:</strong><br>"+ team_players;
     document.getElementById("description").innerHTML ="<strong>Descripcion: </strong>"+dataEquipos[this.selectedIndex].resena;
 }
+
+
+table_sort.onchange = function() { 
+    var opcion = this.options[this.selectedIndex].text; 
+    console.log(opcion);
+    console.log(this.selectedIndex);
+    if(this.selectedIndex == 1){
+        ascendente(7);
+        tabla_posiciones(Equipos_sort);
+    }
+    else if(this.selectedIndex == 2){
+        ordenar(7);
+        tabla_posiciones(Equipos_sort);
+    }
+
+}
+
 
 function mostrar_selectA(){
     liga = "a";
@@ -257,7 +266,6 @@ function mostrar_selectB(){
     cont.innerHTML = aux;
     tabla_posiciones(Equipos_array);
 }
-
 
 function tabla_posiciones(array_equipos){
     var obj_table = document.getElementById('bodytable');
@@ -310,6 +318,21 @@ function ordenar(col){    // uso de slice()  para que no cambie el array origina
     });
 }    
 
+// Funcion de Sort    descendente
+function ascendente(col){    // uso de slice()  para que no cambie el array original
+    Equipos_sort= CpyEquipos_array.slice().sort(function(a,b){
+        if (a.puntos[col] > b.puntos[col]) {    // >    ordena de mayor a menor
+            return 1;
+            }
+            if (a.puntos[col] < b.puntos[col]) {
+            return -1;
+            }
+            // a must be equal to b
+            return 0;
+    });
+}    
+
+
 function fields_reset(){
     document.getElementById("nombre").innerHTML=" ";
     document.getElementById("escudo").setAttribute("src"," ");
@@ -327,102 +350,3 @@ function fields_reset(){
 //  Tabla de posiciones    que se ordene de mayor a menor      o viceversa
 
 /* Esto recorre el array    FOREACH    para renderizar la tabla de equipos por posiciones*/
-
-//dataEquipos.forEach(function(item){
-    //console.log(item);     // me entrega todo lo que recorre   del array   en lista   atraves de ITEM
-    //console.log(item.dt);
-    //console.log(item);
-//});
-
-//otra forma    es lo mismo que lo anterior
-//defino la funcion afuera y se la entrego
-/*
-//var recorrer =function(item){console.log(item)};//Este retorna todo lo de cada item (cada equipo con todo)
-//var recorrer =function(item){console.log(item.estrellas)}; //retorna las estrellas de c/equipo
-var recorrer =function(item){console.log(item.dt)};  // retorna solo el tecnico de cada item
-dataEquipos.forEach(recorrer);
-
-// ----------------------    ||||||   FIN  FOREACH ---------------------------------  //
-*/
-
-/*USO de PUSH   -  agrega al final */
-//dataEquipos.push({});   //agrega el elemento vacio
-   
-/*
-//   USO del FILTER   y reglas 
-var mejorequipo = dataEquipos.filter(function(objeto) {   // se trabaja como una regla a cumplir
-        return objeto.nombre == "Santa Fe";      //  filtra de acuerdo a la igualdad    filtra por franquicia  1ra y 2da division
-    });
-//console.log("resultado Filter: ");
-//console.log(mejorequipo);
-
-var nombres =[{nombre:"carlos molano", edad:36},{nombre:"felipe ordoñez", edad:37},{nombre:"juan urbano", edad:39},{nombre:"Jose ordonez", edad:36}, {nombre:"camilo pedraza", edad:30}]; 
-var persona = nombres.filter(function(objeto) {
-    return objeto.edad >= 37;      //  filtra de acuerdo a la igualdad    filtra por franquicia  1ra y 2da division
-    //return objeto.nombre == "carlos molano";   //  devuelve un array   asi sea un elemento
-});
-*/
-
-
-//console.log("resultado de personas:\n");
-//console.log(persona);
-//console.log(persona[0].edad);
-
-//var persona2 = nombres.find(function(objeto) {
-//    return objeto.edad >= 37;      //Retorna un objeto ,  el primero que tenga coincidencia
-//});
-
-
-//console.log("resultado de Find:\n");
-//console.log(persona2);
-
-/* FIN USO DEL FILTER*/
-
-
-/*  USO DEL SORT() */
-
-/*
-var ordenAs = nombres.sort(function(a,b){
-    if (a.edad > b.edad) {    // >    ordena de menor a mayor
-        return 1;
-        }
-        if (a.edad < b.edad) {
-        return -1;
-        }
-        // a must be equal to b
-        return 0;
-});
-
-var ordenDes = nombres.sort(function(a,b){
-    if (a.edad < b.edad) {    // >    ordena de menor a mayor
-        return 1;
-        }
-        if (a.edad < b.edad) {
-        return -1;
-        }
-        // a must be equal to b
-        return 0;
-});
-
-//   FUNCION MUY UTIL PARA ORGANIZAR  ascendente o descendente
-var orden_ptos = dataEquipos.sort(function(a,b){
-    if (a.puntos[7] < b.puntos[7]) {    // >    ordena de menor a mayor
-        return 1;
-        }
-        if (a.puntos[7] > b.puntos[7]) {
-        return -1;
-        }
-        // a must be equal to b
-        return 0;
-});
-
-*/
-
-//  -------------------------   USO DE PROTOTYPE    ----------------------------    //
-/*
-if (!Array.prototype.primero){
-    Array.prototype.primero = function(){
-        return this[0];
-    }
-}
-*/
