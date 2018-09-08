@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>AJax Ejemplos</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="background-color: rgb(196, 199, 201)">
+            <h2><span class="badge text-center">AJAX Sabado</span></h2>
+            <br>
+        </div>
+        <div class="row">
+                <button type="button" class="btn btn-primary" id="boton">Mostrar consulta</button>
+            </div>
+        <div class="row">
+                <div class="col-sm-4">
+                    <div>
+                        <img src="" id="foto" class="img-fluid" style="padding:2em">
+                        <h3 id="nombre"></h3>
+                        <h5 id="nickname"></h5>
+                    </div>
+                    <div>
+                        <h4 id="empresa"></h4>
+                        <h5 id="city"></h5>
+                    </div>
+                </div>
+            <div class="col-sm-4">
+                <h4 id="demo"></h4>
+                <a id="urlgit" class="btn btn-primary" data-toggle="collapse" href="" target="_blank" role="button" aria-expanded="false" aria-controls="collapseExample" style="display: none;"></a>
+            </div>
+            <div class="col-sm-4" id="columna">
+                <div>
+                    <h3 id="repositorios"></h3>
+                    <table id="tabla_repos" style="display: none;">
+                            <thead>
+                              <tr>
+                                <th id="nombrerepo" scope="col" style="text-align:center">Repositorio</th>
+                                <th id="urlrepo" scope="col" style="text-align:center">URL</th>
+                              </tr>
+                            </thead>
+                            <tbody id="lista_repos"></tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div> 
+    </div>       
+    <script src="eventos.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
