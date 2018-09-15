@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>STAR WARS DATABASE</title>
+</head>
+<body style="background-image: url('img/fondo_starwars.png'); color:aliceblue; margin: 0;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="img/logo.jpg" width="250" height="120">
+                <span style="align-content: justify; font-size: 20;"><strong>DATABASE</strong></span>
+            </div>
+            <div class="col-md-6">                
+                <br><br>
+                <div class="row">
+                    <button type="button" class="btn btn-primary" id="people">Personajes</button>
+                    <button type="button" class="btn btn-primary" id="films">Peliculas</button>
+                    <button type="button" class="btn btn-primary" id="planets">Planetas</button>
+                    <button type="button" class="btn btn-primary" id="species">Especies</button>
+                    <button type="button" class="btn btn-primary" id="starships">Naves</button>
+                    <button type="button" class="btn btn-primary" id="vehicles">Vehiculos</button>    
+                </div>
+            </div>
+        </div>
+        <hr style="background-color: rgb(238, 235, 241)">
+        <div class="row">
+                <div class="col-sm-4">
+                    <div class="row">
+                        <p></p>
+                        <h4 id="title_select"></h4>
+                        <select name="opciones" id="opciones" style="display: none;" class="form-control"></select>
+                    </div>
+        
+                    <div id="div_img" style="display: none;">
+                        <hr style="background-color: rgb(238, 235, 241)">
+                        <img id="foto" src="" width="60%" height="60%"> 
+                    </div>
+                    <div id="div_reseña" style="display: none; align-content: justify;">
+                        <form>
+                            <p></p>
+                            <div class="form-group">
+                                <label for="comment">Reseña:</label>
+                                <textarea class="form-control" rows="11" id="data_reseña"></textarea>
+                            </div>
+                        </form>
+                            
+                    </div>
+                </div>
+            <div class="col-sm-4">
+                <div class="container">
+                    <h4 id="demo"></h4>
+                        <div>
+                            <div id="info_people_container" class="container" style="display: none;">
+                                <h2>Datos de Personaje</h2>
+                                <form>
+                                  <div class="form-group">
+                                    <label for="comment">Informacion basica:</label>
+                                    <textarea class="form-control" rows="5" id="info_people"></textarea>
+                                  </div>
+                                </form>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="comment">Planeta:</label>
+                                        <textarea class="form-control" rows="3" id="data_people"></textarea>
+                                    </div>
+                                </form>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="comment">Peliculas:</label>
+                                        <textarea class="form-control" rows="7" id="data_films"></textarea>
+                                    </div>
+                                </form>
+                            </div> <!--  fin People-->
+                            <div id="info_fimls_container" class="container" style="display: none;">
+                                <h2>Información de la Película</h2>
+                                <form>
+                                  <div class="form-group">
+                                    <label for="comment">Director:</label>
+                                    <textarea class="form-control" rows="1" id="films_director"></textarea>
+                                  </div>
+                                </form>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="comment">Personajes:</label>
+                                        <textarea class="form-control" rows="7" id="films_people"></textarea>
+                                    </div>
+                                </form>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="comment">Planetas:</label>
+                                        <textarea class="form-control" rows="4" id="films_planet"></textarea>
+                                    </div>
+                                </form>
+                            </div> <!--  fin films-->
+                            <div id="info_planet_container" class="container" style="display: none;">
+                                    <h2>Información del Planeta</h2>
+                                    <form>
+                                      <div class="form-group">
+                                        <label for="comment"></label>
+                                        <textarea class="form-control" rows="8" id="planets_info"></textarea>
+                                      </div>
+                                    </form>
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="comment">En que peliculas aparece:</label>
+                                            <textarea class="form-control" rows="7" id="planets_movie"></textarea>
+                                        </div>
+                                    </form>
+                            </div> <!--  fin planetas-->
+                            <div id="info_species_container" class="container" style="display: none;">
+                                <h2>Información de la Especie</h2>
+                                <form>
+                                  <div class="form-group">
+                                    <label for="comment"></label>
+                                    <textarea class="form-control" rows="6" id="species_info"></textarea>
+                                  </div>
+                                </form>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="comment">En que peliculas aparece:</label>
+                                        <textarea class="form-control" rows="8" id="species_movie"></textarea>
+                                    </div>
+                                </form>
+                            </div> <!--  fin Species-->
+                            <div id="info_ships_container" class="container" style="display: none;">
+                                <h2>Información de la nave: </h2>
+                                <form>
+                                  <div class="form-group">
+                                    <label for="comment"></label>
+                                    <textarea class="form-control" rows="6" id="ships_info"></textarea>
+                                  </div>
+                                </form>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="comment">En que peliculas aparece:</label>
+                                        <textarea class="form-control" rows="8" id="ships_movies"></textarea>
+                                    </div>
+                                </form>
+                            </div> <!--  fin ships-->
+                            <div id="info_auto_container" class="container" style="display: none;">
+                                <h2>Información del Vehiculo: </h2>
+                                <form>
+                                  <div class="form-group">
+                                    <label for="comment"></label>
+                                    <textarea class="form-control" rows="6" id="auto_info"></textarea>
+                                  </div>
+                                </form>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="comment">En que peliculas aparece:</label>
+                                        <textarea class="form-control" rows="8" id="auto_movies"></textarea>
+                                    </div>
+                                </form>
+                            </div> <!--  fin ships-->
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col-sm-4" id="columna">
+                    <div id="data_people_container" class="container" style="display: none;">
+                        <h3>Información Adicional</h3>
+                        <form>
+                                <div class="form-group">
+                                    <label for="comment">Naves: </label>
+                                    <textarea class="form-control" rows="6" id="div_naves"></textarea>
+                                </div>
+                        </form>
+                        <form>
+                                <div class="form-group">
+                                    <label for="comment">Vehiculos:</label>
+                                    <textarea class="form-control" rows="5" id="div_vehiculo"></textarea>
+                                </div>
+                        </form>
+                    </div><!--fin people-->
+                    <div id="data_films_container" class="container" style="display: none;">
+                            <h3>Información de interés</h3>
+                            <form>
+                                    <div class="form-group">
+                                            <label for="comment">Naves:</label>
+                                            <textarea class="form-control" rows="7" id="films_ships"></textarea>
+                                        </div>
+                            </form>
+                            <form>
+                                    <div class="form-group">
+                                        <label for="comment">Especies:</label>
+                                        <textarea class="form-control" rows="7" id="films_species"></textarea>
+                                    </div>
+                            </form>
+                    </div><!--  fin films-->
+                    <div id="data_planet_container" class="container" style="display: none;">
+                            <h3>Información de Población</h3>
+                            <form>
+                                    <div class="form-group">
+                                            <label for="comment">Residentes:</label>
+                                            <textarea class="form-control" rows="12" id="planets_people"></textarea>
+                                        </div>
+                            </form>
+                    </div><!--  fin planetas-->
+                    <div id="data_species_container" class="container" style="display: none;">
+                        <h3>Información Adicional</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="comment">Idioma:</label>
+                                    <textarea class="form-control" rows="5" id="species_lang"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">Planeta donde vive:</label>
+                                    <textarea class="form-control" rows="5" id="species_planet"></textarea>
+                                </div>
+                            </form>
+                    </div><!--  fin species-->
+                    <div id="data_ships_container" class="container" style="display: none;">
+                        <h3>Información Adicional</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="comment">Clase:</label>
+                                    <textarea class="form-control" rows="5" id="ships_class"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">Tripulación:</label>
+                                    <textarea class="form-control" rows="5" id="ships_crew"></textarea>
+                                </div>
+                            </form>
+                    </div><!--  fin Ships-->
+                    <div id="data_auto_container" class="container" style="display: none;">
+                        <h3>Información Adicional</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="comment">Fabrica:</label>
+                                    <textarea class="form-control" rows="4" id="auto_model"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">Model:</label>
+                                    <textarea class="form-control" rows="4" id="auto_class"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">Tripulación:</label>
+                                    <textarea class="form-control" rows="4" id="auto_crew"></textarea>
+                                </div>
+                            </form>
+                    </div><!--  fin Ships-->
+            </div>
+        </div> 
+    </div>       
+    <script src="funciones.js"></script>
+</body>
+</html>
