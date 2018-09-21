@@ -40,18 +40,25 @@ var avatars=[
     'https://vignette.wikia.nocookie.net/legomessageboards/images/1/1d/Chewbacca.jpg/revision/latest?cb=20130430154940'
 ];
 
-// ----    para cargar o ejecutar una URL una vez se cargue los datos  ----//
-function api_request(url){ 
-    var data = [];
-    var req = new XMLHttpRequest();
-    req.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            data = JSON.parse(this.responseText);  
-            data_api = data;
+
+function api_request(url){
+    return new Promise( function(resolve, reject){
+        var httpP = new XMLHttpRequest();
+        httpP.onreadystatechange = function(){
+            if (this.readyState==4){
+                if(this.status==200) {
+                    resolve(this.responseText);
+                }else {
+                    reject(Error(' '+this.status));
+                }
+            }
+        };
+        httpP.open('GET',url,true);
+        httpP.onerror = function(){
+            reject(Error('Error de red'))
         }
-    }
-    req.open("GET", url, true);
-    req.send();
+        httpP.send();
+    });
 }
 
 function listar_info(informacion){
@@ -93,55 +100,52 @@ function selector(){
     var opc = this.id;  // es la opcion:  vehicles, people, starships etc-...
     seleccion= opc;
     var aux = "<option value=0>Seleccionar</option>";
-    api_request(url);   // ejecuta una consulta de un boton seleccionado
-    var titulo_select= document.getElementById("title_select"); // toma el object titulo del select
-    var opc_sel = document.getElementById("opciones");
-    setTimeout(function(){
+    api_request(url).then(function(data){
+        data_api=JSON.parse(data);
+        var titulo_select= document.getElementById("title_select"); // toma el object titulo del select
+        var opc_sel = document.getElementById("opciones");
         var opc1 = menu_op(opc);
         titulo_select.innerHTML="<strong>Escoja "+opc1+"</strong>";   // pone un mensaje antes del select
         document.getElementById("opciones").setAttribute("style","display: block;"); // aparece select
-        var listas = data_api.results;
+        var listas = data_api.results;  // es un array
         listas.forEach(function(item, index){      // va a recorrer el data para listar las opciones
             urls_selector.push(item.url);
             if(opc == "films")
                 aux += "<option value='" + (index+1) +"'>"+item.title +"</option>"    
             else    
                 aux += "<option value='" + (index+1) +"'>"+item.name +"</option>"
-         });
-         opc_sel.innerHTML = aux;
-    }, 3000);
+        });
+    opc_sel.innerHTML = aux;
+    })
+    .catch(function(err){
+        console.log(err);
+    }); 
 }
 
-//https://swapi.co/api/films/?title=A new Hope
-
 var select_button =  document.getElementById("opciones");   // var que recibe Objeto Select
-//var table_sort =  document.getElementById("tabla_sort");
 
 select_button.onchange = function() { //detecta cambios sobre el select cargado 
         var nom = this.options[this.selectedIndex].text;   // ubica todo lo seleccionado
         var indice = this.options[this.selectedIndex].value;  // valor numerico de opcion
         var datos = [];
-        var req = new XMLHttpRequest();
         var url_consulta = "";
         url_consulta= urls_selector[indice-1];  // tiene la lista o URL del elemento seleccionado 
-        /*
-        if(seleccion == "starships" || seleccion == "vehicles"){
-            url_consulta= urls_selector[indice-1];
-        }
-        else{
-            url_consulta =url_request+"/"+indice;  //
-        }*/
-        req.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                data = JSON.parse(this.responseText);  
-                datos = data;
-                despliegue_info(datos, indice);
-            }
-        }
-        req.open("GET", url_consulta, true);
-        req.send();
+        consultas(url_consulta, indice);
 }
 
+// FUNCION DONDE HARE UNA PROMESA  o un callback   y depende del boton  ejecute los url respectivos
+function consultas(url_consulta, indice){
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            data = JSON.parse(this.responseText);  
+            datos = data;
+            despliegue_info(datos, indice);
+        }
+    }
+    req.open("GET", url_consulta, true);
+    req.send();
+}
 
 function despliegue_info(datos, indice){
     if(seleccion == "people"){
