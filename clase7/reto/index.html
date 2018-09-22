@@ -15,7 +15,28 @@
                 <span style="align-content: justify; font-size: 20;"><strong>DATABASE</strong></span>
             </div>
             <div class="col-md-6">                
+                    <ul class="nav nav-pills">
+                            <li class="nav-item">
+                              <a type="button" class="nav-link active" id="people">Personajes</a>
+                            </li>
+                            <li class="nav-item">
+                              <a type="button" class="nav-link active" id="films">Peliculas</a>
+                            </li>
+                            <li class="nav-item">
+                              <a type="button" class="nav-link active" id="planets">Planetas</a>
+                            </li>
+                            <li class="nav-item">
+                              <a  type="button" class="nav-link active" id="species">Especies</a>
+                            </li>
+                            <li class="nav-item">
+                                <a type="button" class="nav-link active" id="starships">Naves</a>
+                            </li>
+                            <li class="nav-item">
+                                <a type="button" class="nav-link active" id="vehicles">Vehiculos</a>
+                            </li>
+                          </ul>
                 <br><br>
+                <!--
                 <div class="row">
                     <button type="button" class="btn btn-primary" id="people">Personajes</button>
                     <button type="button" class="btn btn-primary" id="films">Peliculas</button>
@@ -24,6 +45,7 @@
                     <button type="button" class="btn btn-primary" id="starships">Naves</button>
                     <button type="button" class="btn btn-primary" id="vehicles">Vehiculos</button>    
                 </div>
+                -->
             </div>
         </div>
         <hr style="background-color: rgb(238, 235, 241)">
@@ -247,5 +269,50 @@
         </div> 
     </div>       
     <script src="funciones.js"></script>
+    <script>
+    /*
+    function getP(url){
+        return new Promise( function(resolve, reject){
+            var httpP = new XMLHttpRequest();
+            httpP.onreadystatechange = function(){
+                if (this.readyState==4){
+                    if(this.status==200) {
+                        resolve(this.responseText);
+                    }else {
+                        reject(Error(' '+this.status));
+                    }
+                }
+            };
+            httpP.open('GET',url,true);
+            httpP.onerror = function(){
+                reject(Error('Error de red'))
+            }
+            httpP.send();
+        });
+    }
+    var datos="";
+    var datos2="";
+    getP('https://swapi.co/api/people/1')
+    .then(function(data){
+        datos=JSON.parse(data);
+        console.log(datos);
+        var pelis = datos.films;
+        pelis.forEach(function(item, index){
+            getP(item).then(function(data){
+                var tmp= JSON.parse(data);
+                console.log(tmp.title);
+            });
+        });
+        return getP(datos.homeworld);
+    })
+    .then(function(data){
+        datos2= JSON.parse(data);
+        console.log(datos2.name);
+    })
+    .catch(function(err){
+        console.log(err);
+    });
+    */
+    </script>
 </body>
 </html>
