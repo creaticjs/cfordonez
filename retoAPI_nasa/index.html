@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/formato.css">  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Planetas e imagenes</title>
+</head>
+<body id="cuerpo">
+    <div class="container-fluid">
+        <div class="row">
+                <h1 >NASA - UNIVERSO EN IMAGENES</h1>
+        </div>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col-sm-3" id="left_col">
+                <!--    para  video  Modal-->
+                <!-- Modal -->
+                <div class="modal fade" id="video_mars" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="background-color: black; color: white;">
+                            <div class="modal-header">
+                                <h6 class="modal-title"><strong>Helicopter</strong></h6>
+                                <button type="button" class="close" data-dismiss="modal" style="background-color: white;" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="background-color:black;">
+                                    <iframe allow=autoplay width="460px" height="385px" src="https://images-assets.nasa.gov/video/NHQ_2018_0511_%20Mars%20Helicopter%20Technology%20Demonstration/NHQ_2018_0511_%20Mars%20Helicopter%20Technology%20Demonstration~small.mp4" allowfullscreen></iframe>   
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- modal fin    -->
+                <!--   fin de Video Modal-->
+
+                <div class="btn-group-vertical" style="margin-left: 10px;">    
+                    <h3><span class="badge badge-secondary">MENU</span></h3>
+                        <button id="earth" type="button" value="tierra" class="btn btn-secondary" style="width:250px;" > PLANETA TIERRA</button>
+                        <div class="dropdown">
+                            <button id="rover" type="button" class="btn btn-secondary dropdown-toggle" style="width:250px;" data-toggle="dropdown">
+                            IMAGENES DEL ROVER
+                            </button>
+                            <div id="selector_cam" class="dropdown-menu">
+                                <button value="mast" class="dropdown-item" style="width:250px;">CAMARA MAST</button>
+                                <button value="fhaz" class="dropdown-item"  style="width:250px;">CAMARA FHAZ</button>
+                                <button value="navcam" class="dropdown-item"  style="width:250px;">CAMARA NAVCAM</button>
+                            </div>
+                        </div>
+                        <button id="busca_planeta" type="button" value="busca_planet" class="btn btn-secondary" style="width:250px;" >BUSCAR PLANETA</button>
+
+                    <div id="coordinates" style="margin-top:30px; margin-left:7%;">
+                            <h5>Digite las coordenadas:</h5>
+                            <input id="latitude" class="form-control" type="text" size="10" placeholder="Latitud" name="lat" style="text-align:center;">
+                            <input id="longitude" class="form-control" type="text" size="10" placeholder="Longitud" name="lon" style="text-align:center;">
+                            
+                            <button id="send_coord" class="btn btn-success btn-sm" data-toggle="modal" data-target="#img_earth" size="5">CARGAR IMAGEN</button>
+                    </div>
+                    <footer id="search_bar_2" class="page-footer" style="margin-top: 280px;">
+                        <h6 id="title_bar2"></h6>
+                        <form class="form-inline">
+                                <input id="planet2" class="form-control" type="search" placeholder="Escribir planeta en ingles" aria-label="Search" style="text-align:center; width: 90% !important;">
+                                <button id="send_planet2" class="btn btn-success btn-sm" style="padding: 4px 5px; width: 90% !important;" type="submit">BUSCAR PLANETA</button>
+                        </form>
+                        <p id="msg_planet2" style="margin-left: 40px; font-size: 12pt">INTRODUZCA UN PLANETA VALIDO!!</p>
+                    </footer>
+                </div>
+            </div>
+            <div class="col-md-9" id="main_frame">
+                <div id="titulo">
+                    <h4>Este es un espacio ideal para admirar el lugar que habitamos, todo el universo que nos rodea y el alcance de nuestra tecnología</h4>
+                </div>
+                <div class="container-fluid" id="imagenes_planeta"></div>
+                <div class="container" id="bar_loading">
+                        <img src="img/loading3.gif" class="centrado" width="200px" height="200px" style="border: 1px solid black;">
+                    </div>
+                <div id="main_scope">
+                    <div class="row"id="zona_search">   <!--Nav bar de busqueda-->
+                        <nav class="navbar navbar-dark bg-dark" style="margin-top:80px; margin-left:60px; margin-right: 180px;">
+                            <form class="form-inline my-2 my-lg-0">
+                                <input id="planet" class="form-control mr-sm-6" type="search" size="50" placeholder="Escribe tu planeta en ingles" aria-label="Search" style="text-align:center;">
+                                <button id="send_planet" class="btn btn-outline-success my-6 my-sm-0" style="padding: 7px 30px;">BUSCAR PLANETA</button>
+                            </form>
+                            <!-- Navbar content -->
+                            <p id="msg_planet" style="margin-left: 100px;">INTRODUZCA UN PLANETA VALIDO!!</p>
+                        </nav>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="img_earth" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="background-color: black; color: white;">
+                            <div class="modal-header">
+                                <h6 class="modal-title"></h6>
+                                <button type="button" class="close" data-dismiss="modal" style="background-color: white;" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="background-color:black;">
+                                <img id="imagen_tierra" src="" class="img" width="470px" height="470px"> 
+                            </div>
+                            <p id="text_tierra" style="text-align: center"></p>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal fin    -->
+                <!-- INICIO DE MODAL Para Imagenes del planeta buscado -->
+                <!--<div class="modal fade" id="img_planet" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="background-color: black; color: white;">
+                            <div class="modal-header">
+                                <h6 class="modal-title"></h6>
+                                <button type="button" class="close" data-dismiss="modal" style="background-color: white;" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="background-color:black;">
+                                <img id="planet_img" src="" class="img" width="470px" height="470px"> 
+                            </div>
+                            <p id="text_planet" style="text-align: center"></p>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+                <!-- FIN  MODAL planetas -->
+            </div>
+            
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="js/eventos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
+</body>
+</html>
