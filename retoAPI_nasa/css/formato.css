@@ -1,5 +1,5 @@
 #cuerpo{
-    background-image: url("/img/fondo.jpg");
+    background-image: url("../img/fondo.jpg");
     font: rgb(207, 198, 198);
     width: 100%;
     background-size: cover;
