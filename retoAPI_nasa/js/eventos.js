@@ -1,5 +1,5 @@
 var api_key="D0HqpPNQVefUHDNjMtNDNtiZeeM8MN9NPgcKAEMM";
-var url_mars = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=2000&camera=";
+var url_mars = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1500&camera=";
 var ulr_earth = "https://api.nasa.gov/planetary/earth/imagery/?";
 var url_search = "https://images-api.nasa.gov/search?q=";
 var planeta = "";
@@ -168,11 +168,13 @@ $(".dropdown-item").click(function(){
         .Take(15).ToArray();                        // toma los primeros 15
     
         var arr_photos = query;   // uso de array obtenido de Linq JS
+        console.log(data.photos[0]);
         rover_name= data.photos[0].rover.name;
         camera_name = data.photos[0].camera.full_name;
         var tam = arr_photos.length;
         var str_csl = `<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"> <ol class="carousel-indicators">`;
         $('#titulo').empty();
+        console.log("al foreach a leer");
         arr_photos.forEach(function(img_url, index){
             curiosity_img.push(img_url.img_src);
             date_earth.push(img_url.earth_date);
@@ -182,7 +184,7 @@ $(".dropdown-item").click(function(){
         curiosity_img.forEach(function(img, index){
             if(index==0){
                 str_csl += `<div class="carousel-item active">
-                                <img class="d-block w-100" src="${img}"  height="500px" style="margin-right=50px !important;">   
+                                <img class="d-block img-rounded" height="520" width="950" src="${img}" style="margin-right=50px !important;">   
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5><strong>Fecha:</strong> ${date_earth[index]}</h5>
                                     <p class="text_img"><strong>Camara del Rover: </strong> ${camera_name}</p> 
@@ -191,7 +193,7 @@ $(".dropdown-item").click(function(){
             }
             else{
                 str_csl += `<div class="carousel-item">
-                                <img class="d-block w-100" src="${img}" height="500px"  style="margin-right=50px !important;">
+                                <img class="d-block img-rounded" height="520" width="950" src="${img}" style="margin-right=50px !important;">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5><strong>Fecha:</strong> ${date_earth[index]}</h5>
                                     <p class="text_img"><strong>Camara del Rover: </strong> ${camera_name}</p> 
@@ -209,7 +211,9 @@ $(".dropdown-item").click(function(){
                         </a>
                     </div>`;
 
+        
         $("#main_scope").html(str_csl);
+
         curiosity_img=[];
         rover_name ="";
         date_earth = [];
@@ -247,15 +251,6 @@ $("#card_class").on('click', function(){
 $(document).ready(function(){
     $("#video_mars").modal();
 });
-
-
-function lazarmodal(src_url){
-    var url = $(this).val();
-    //var url = $(".card-img-top").attr("src");
-    console.log(url);
-    $("#planet_img").attr("src", url);
-    $("#img_planet").modal();
-}
 
 
 function request_planet(url_p){
